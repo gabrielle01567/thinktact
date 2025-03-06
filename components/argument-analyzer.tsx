@@ -248,6 +248,10 @@ export function ArgumentAnalyzer() {
     setMessages(prev => [userMessage, ...prev]);
     
     try {
+      console.log('Starting analysis request from client');
+      console.log(`Argument length: ${argument.length} characters`);
+      console.log(`User agent: ${navigator.userAgent}`);
+      
       const response = await fetch('/api/mistral-analysis', {
         method: 'POST',
         headers: {
@@ -256,7 +260,20 @@ export function ArgumentAnalyzer() {
         body: JSON.stringify({ argument }),
       });
 
-      const data = await response.json();
+      console.log(`Response status: ${response.status}`);
+      
+      // Try to get the response text first for debugging
+      const responseText = await response.text();
+      console.log(`Raw response: ${responseText}`);
+      
+      // Parse the JSON response
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Error parsing JSON response:', parseError);
+        throw new Error(`Failed to parse response: ${responseText}`);
+      }
 
       if (!response.ok) {
         // Handle specific error cases
@@ -285,6 +302,8 @@ export function ArgumentAnalyzer() {
         throw new Error(data.error || data.message || 'Failed to analyze argument');
       }
 
+      console.log('Successfully received analysis response');
+      
       // Add assistant response to the conversation
       const assistantMessage: Message = {
         role: 'assistant',
@@ -310,10 +329,17 @@ export function ArgumentAnalyzer() {
       });
       setExpandedSections(prev => ({...prev, ...newExpandedSections}));
     } catch (error) {
+      console.error('Error in analyzeArgument:', error);
+      
+      // Display a more detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Failed to analyze argument';
+      setError(errorMessage);
+      
       toast({
         title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to analyze argument',
+        description: errorMessage,
         variant: 'destructive',
+        duration: 10000, // Show for longer to ensure it's seen
       });
     } finally {
       setIsAnalyzing(false);
