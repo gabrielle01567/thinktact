@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  name            String?
+  subscriptionTier String   @default("FREE")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  analyses        ArgumentAnalysis[]
+  threads         Thread[]
+  messages        Message[]
+}
+
+model ArgumentAnalysis {
+  id        String   @id @default(cuid())
+  userId    String
+  threadId  String
+  runId     String
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Thread {
+  id           String    @id @default(cuid())
+  userId       String
+  openaiThreadId String   @unique
+  title        String?
+  isActive     Boolean   @default(true)
+  expiresAt    DateTime?
+  isSaved      Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User      @relation(fields: [userId], references: [id])
+  messages     Message[]
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([expiresAt])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  threadId  String
+  userId    String?
+  role      String   // "user" or "assistant"
+  content   String
+  createdAt DateTime @default(now())
+  thread    Thread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@index([threadId])
+  @@index([createdAt])
+} 

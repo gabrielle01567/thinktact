@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%; /* Darker text for better readability */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+    --primary: 355 35% 36%; /* Deeper burgundy (#7A3B3F) */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 355 20% 94%;
+    --secondary-foreground: 355 35% 36%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%; /* Darker muted text */
+    --accent: 355 20% 94%;
+    --accent-foreground: 355 35% 36%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 355 35% 36%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 355 35% 45%; /* Brighter burgundy for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 355 20% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 20% 20%;
+    --muted-foreground: 0 0% 70%; /* Brighter muted text for dark mode */
+    --accent: 355 20% 20%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 20% 20%;
+    --input: 0 20% 20%;
+    --ring: 355 35% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Poppins-specific typography adjustments */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight text-gray-850 dark:text-gray-50;
+  }
+  
+  h1 {
+    @apply font-semibold;
+  }
+  
+  p {
+    @apply font-normal text-gray-850 dark:text-gray-100;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-port-500 via-port-600 to-port-700;
+}
+
+/* Burgundy button styles with increased contrast */
+.btn-port {
+  @apply bg-port-500 text-white hover:bg-port-600 focus:ring-port-500;
+}
+
+.btn-port-outline {
+  @apply border-port-500 text-port-500 hover:bg-port-50 focus:ring-port-500;
+}
+
+/* Remove smooth scrolling to improve performance */
+* {
+  scroll-behavior: auto;
+}
+
+/* Optimize rendering */
+html, body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Disable hover effects on mobile to improve performance */
+@media (max-width: 768px) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* System-generated content styling */
+.system-generated-content {
+  @apply text-gray-800 dark:text-gray-200;
+  line-height: 1.8;
+}
+
+.system-generated-content strong {
+  @apply font-semibold text-port-700 dark:text-port-300;
+}
+
+.system-generated-content em {
+  @apply italic text-gray-700 dark:text-gray-300;
+}
+
+.system-generated-content p {
+  @apply mb-5;
+}
+
+.system-generated-content ul, 
+.system-generated-content ol {
+  @apply pl-6 mb-5 space-y-3;
+}
+
+.system-generated-content li {
+  @apply mb-2;
+}
+
+.system-generated-content a {
+  @apply text-port-500 hover:text-port-600 dark:text-port-300 dark:hover:text-port-200 underline;
+}
+
+.system-generated-content blockquote {
+  @apply pl-5 border-l-2 border-port-300 dark:border-port-700 italic my-5 py-1 text-gray-700 dark:text-gray-300;
+}
+
