@@ -42,7 +42,7 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className={`text-sm font-semibold leading-6 relative ${
+              className={`text-base font-semibold leading-6 relative ${
                 pathname === item.href 
                   ? "text-port-500 font-bold after:absolute after:bottom-[-8px] after:left-0 after:right-0 after:h-[3px] after:bg-port-500 after:rounded-full" 
                   : "text-gray-750 dark:text-gray-200 hover:text-port-500"
@@ -54,7 +54,7 @@ export function Header() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
           <ThemeToggle />
-          <Button asChild className="bg-port-500 hover:bg-port-600 text-white font-medium shadow-sm">
+          <Button asChild className="bg-port-500 hover:bg-port-600 text-white font-medium shadow-sm text-base">
             <Link href="/analyze">Try Argument Analysis</Link>
           </Button>
         </div>
@@ -82,7 +82,7 @@ export function Header() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
+                        className={`-mx-3 block rounded-lg px-3 py-2 text-lg font-semibold leading-7 ${
                           pathname === item.href 
                             ? "text-port-500 font-bold bg-port-50 dark:bg-port-900/20 border-l-4 border-port-500" 
                             : "text-gray-750 dark:text-gray-200 hover:text-port-500 hover:bg-gray-50 dark:hover:bg-gray-800"

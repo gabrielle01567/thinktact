@@ -94,7 +94,7 @@ export default function BlogPage() {
                   <div key={project.id} className="flex flex-col border rounded-lg p-6">
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-xl font-bold">{project.title}</h3>
-                      <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-100">
+                      <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-gray-800 dark:text-port-300">
                         {project.status}
                       </span>
                     </div>

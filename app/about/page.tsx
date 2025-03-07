@@ -6,9 +6,23 @@ import { ArrowRight, Brain, Shield, Zap } from "lucide-react"
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-        <div className="container px-4 md:px-6">
+      {/* Hero Section with Brain Video Background */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900 overflow-hidden">
+        {/* Brain Video Background */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute inset-0 bg-gray-50/90 dark:bg-gray-950/90 z-10"></div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-30 z-0"
+          >
+            <source src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.mp4" type="video/mp4" />
+          </video>
+        </div>
+        
+        <div className="container px-4 md:px-6 relative z-20">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none gradient-text">

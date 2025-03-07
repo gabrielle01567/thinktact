@@ -1,23 +1,43 @@
 import { Metadata } from "next";
 import { ArgumentAnalyzer } from '@/components/argument-analyzer';
+import { ArgumentDashboard } from '@/components/argument-dashboard';
+import { ArgumentCoach } from '@/components/argument-coach';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export const metadata = {
-  title: 'Argument Analyzer',
-  description: "Strengthen your arguments with structured analysis of logical patterns and reasoning.",
+  title: 'Argument Analysis',
+  description: "Analyze your arguments for logical fallacies and track your reasoning progress.",
 };
 
 export default function AnalyzePage() {
   return (
-    <div className="container py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-850 dark:text-white">Strengthen your arguments with structured analysis</h1>
-          <p className="mt-3 text-xl text-gray-600 dark:text-gray-300">
-            Use our AI assistant to identify logical patterns, address fallacies, and enhance your reasoning.
-          </p>
-        </div>
-
-        <ArgumentAnalyzer />
+    <div className="container py-4 md:py-6">
+      <h1 className="text-2xl md:text-3xl font-bold text-center mb-4 text-gray-900 dark:text-white">Argument Analysis</h1>
+      
+      <div className="grid grid-cols-1 gap-8 max-w-[1600px] mx-auto">
+        {/* Argument Dashboard */}
+        <section>
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Your Dashboard</h2>
+          <ArgumentDashboard />
+        </section>
+        
+        {/* Argument Analysis and Coaching */}
+        <section className="mt-8">
+          <Tabs defaultValue="analyzer" className="w-full">
+            <TabsList className="mb-4">
+              <TabsTrigger value="analyzer">Analyze Argument</TabsTrigger>
+              <TabsTrigger value="coach">AI Coaching</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="analyzer">
+              <ArgumentAnalyzer />
+            </TabsContent>
+            
+            <TabsContent value="coach">
+              <ArgumentCoach />
+            </TabsContent>
+          </Tabs>
+        </section>
       </div>
     </div>
   )

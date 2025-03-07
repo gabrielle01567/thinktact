@@ -10,60 +10,60 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Solid Background */}
       <section className="relative h-[95vh] overflow-hidden bg-port-900">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat"></div>
-        </div>
-        
-        {/* Pulsating Brain Animation */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
-          <div className="relative w-[90vw] h-[90vh] max-w-[1000px] max-h-[1000px]">
-            {/* Video version (better performance) */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-contain"
-            >
-              <source src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.mp4" type="video/mp4" />
-              {/* Fallback to GIF if video doesn't work */}
-              <img 
-                src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.gif"
-                alt="Pulsating Brain"
-                className="w-full h-full object-contain"
-              />
-            </video>
+        {/* Tiger GIF Background with improved quality */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute inset-0">
+            <Image
+              src="/20250306_2050_Regal Tiger Witness_simple_compose_01jnq4r965f438565sm7jn2n4m.gif"
+              alt="Tiger Background"
+              fill
+              priority
+              unoptimized
+              style={{
+                objectFit: 'cover',
+                opacity: 0.3,
+                filter: 'contrast(1.05) brightness(0.95)'
+              }}
+            />
           </div>
         </div>
         
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10 z-10">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat"></div>
+        </div>
+        
         {/* Content */}
-        <div className="container relative z-20 flex flex-col items-center justify-center h-full text-center text-white">
+        <div className="container relative z-30 flex flex-col items-center justify-center h-full text-center text-white">
           <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl mb-8 text-white">
             Master the Art of Logical Reasoning
           </h1>
           <p className="max-w-2xl mx-auto text-xl mb-12 text-white font-light">
             Elevate your argumentation skills with AI-powered analysis and training. Perfect for lawyers, students, and professionals who rely on clear logical thinking.
           </p>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-6">
             <Link
-              href="/waitlist"
+              href="/analyze"
               className="px-8 py-4 text-lg font-medium text-port-900 bg-white border-2 border-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Join the Waitlist
-            </Link>
-            <Link
-              href="/features"
-              className="px-8 py-4 text-lg font-medium text-white bg-transparent border-2 border-white rounded-lg hover:bg-white/10 transition-colors shadow-lg"
-            >
-              Explore Features
+              Try Argument Analysis
             </Link>
           </div>
-          <div className="mt-12 bg-port-800/80 px-8 py-4 rounded-lg inline-block">
-            <p className="text-lg text-white flex items-center font-medium">
-              <Calendar className="h-5 w-5 mr-3 text-white" />
-              Launching March 2025 — <Link href="/waitlist" className="underline ml-2 text-white hover:text-port-200 font-medium">Get early access</Link>
-            </p>
+          <div className="mt-12 bg-gradient-to-r from-port-800/90 via-port-700/90 to-port-800/90 px-8 py-5 rounded-lg inline-block shadow-lg border border-port-600/30">
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <div className="flex items-center">
+                <Calendar className="h-6 w-6 mr-3 text-port-300" />
+                <span className="text-lg text-white font-medium">Patent Buddy launching May 10, 2025</span>
+              </div>
+              <div className="h-5 w-px bg-port-600/50 hidden sm:block"></div>
+              <Link 
+                href="/waitlist" 
+                className="flex items-center text-port-200 hover:text-white transition-colors font-medium"
+              >
+                <span>Join the waitlist</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

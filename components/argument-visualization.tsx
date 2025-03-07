@@ -311,7 +311,7 @@ export function ArgumentVisualization({ data }: ArgumentVisualizationProps) {
           onClick={() => setActiveTab('core')}
           className={`px-4 py-2 rounded-lg transition-colors ${
             activeTab === 'core'
-              ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+              ? 'bg-blue-100 text-blue-700 dark:bg-gray-800 dark:text-port-300'
               : 'hover:bg-gray-100 dark:hover:bg-gray-800'
           }`}
         >
@@ -321,7 +321,7 @@ export function ArgumentVisualization({ data }: ArgumentVisualizationProps) {
           onClick={() => setActiveTab('counter')}
           className={`px-4 py-2 rounded-lg transition-colors ${
             activeTab === 'counter'
-              ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+              ? 'bg-blue-100 text-blue-700 dark:bg-gray-800 dark:text-port-300'
               : 'hover:bg-gray-100 dark:hover:bg-gray-800'
           }`}
         >
@@ -331,7 +331,7 @@ export function ArgumentVisualization({ data }: ArgumentVisualizationProps) {
           onClick={() => setActiveTab('feedback')}
           className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
             activeTab === 'feedback'
-              ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+              ? 'bg-blue-100 text-blue-700 dark:bg-gray-800 dark:text-port-300'
               : 'hover:bg-gray-100 dark:hover:bg-gray-800'
           }`}
         >
@@ -401,7 +401,7 @@ export function ArgumentVisualization({ data }: ArgumentVisualizationProps) {
                   👎 Not Helpful
                 </button>
               </div>
-              <button className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+              <button className="text-sm text-blue-600 hover:text-blue-700 dark:text-port-400 dark:hover:text-port-300">
                 Get Premium Analysis →
               </button>
             </div>

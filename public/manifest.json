@@ -1,16 +1,28 @@
 {
-  "name": "ThinkTact",
-  "short_name": "ThinkTact",
-  "description": "Master the Art of Logical Reasoning",
+  "name": "Patent Buddy",
+  "short_name": "PatentBuddy",
+  "description": "Master the Art of Logical Reasoning for Patents",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0F172A",
-  "theme_color": "#0F172A",
+  "background_color": "#7A3B3F",
+  "theme_color": "#7A3B3F",
   "icons": [
     {
       "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     },
     {

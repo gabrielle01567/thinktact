@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom animations */
+@keyframes underline {
+  0% { width: 0; left: 0; right: auto; }
+  40% { width: 100%; left: 0; right: auto; }
+  60% { width: 100%; left: 0; right: auto; }
+  100% { width: 0; left: 100%; right: auto; }
+}
+
+.animate-underline {
+  animation: underline 4s ease-in-out infinite;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 3px;
+  background-color: hsl(var(--primary));
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
