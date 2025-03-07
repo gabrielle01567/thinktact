@@ -15,16 +15,25 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat"></div>
         </div>
         
-        {/* Pulsating Brain GIF */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-          <div className="relative w-[80vw] h-[80vh] max-w-[800px] max-h-[800px]">
-            <Image 
-              src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.gif"
-              alt="Pulsating Brain"
-              fill
-              style={{ objectFit: 'contain' }}
-              priority
-            />
+        {/* Pulsating Brain Animation */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
+          <div className="relative w-[90vw] h-[90vh] max-w-[1000px] max-h-[1000px]">
+            {/* Video version (better performance) */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-contain"
+            >
+              <source src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.mp4" type="video/mp4" />
+              {/* Fallback to GIF if video doesn't work */}
+              <img 
+                src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.gif"
+                alt="Pulsating Brain"
+                className="w-full h-full object-contain"
+              />
+            </video>
           </div>
         </div>
         
