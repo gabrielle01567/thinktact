@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Brain, Shield, Zap, CheckCircle, FileText, BookOpen, Expand, Search, CheckSquare, Lightbulb, Settings, Info, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { WaitlistForm } from "@/components/waitlist-form"
@@ -12,6 +13,19 @@ export default function Home() {
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat"></div>
+        </div>
+        
+        {/* Pulsating Brain GIF */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+          <div className="relative w-[80vw] h-[80vh] max-w-[800px] max-h-[800px]">
+            <Image 
+              src="/20250306_2041_Pulsating Brain Art_simple_compose_01jnq46pcrf3tsa6ext8aaepz7.gif"
+              alt="Pulsating Brain"
+              fill
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+          </div>
         </div>
         
         {/* Content */}
