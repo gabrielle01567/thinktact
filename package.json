@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "bash deploy.sh",
+    "deploy:aws": "npm run build && aws s3 sync .next/static/ s3://YOUR_BUCKET_NAME/_next/static/ && aws s3 sync out/ s3://YOUR_BUCKET_NAME/",
+    "deploy:vercel": "vercel --prod",
+    "deploy:staging": "vercel"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

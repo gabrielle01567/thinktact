@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
-import { mistralClient, getChatCompletion } from '@/lib/mistral';
+import { mistralClient, getChatCompletionStream } from '@/lib/mistral';
 
 export async function POST(req: Request) {
   const requestId = uuidv4();
@@ -26,7 +26,21 @@ export async function POST(req: Request) {
     // Create system prompt for argument analysis
     const systemPrompt = `You are an expert in critical thinking and argument analysis. 
     Your task is to analyze arguments for logical fallacies, evaluate their strength, 
-    and provide constructive feedback. Be thorough but concise in your analysis.`;
+    and provide constructive feedback. Be thorough but concise in your analysis.
+    
+    Format your response with the following sections:
+    
+    **Logical Structure:**
+    [Analyze the structure of the argument, identifying premises and conclusions]
+    
+    **Fallacies:**
+    [List and explain any logical fallacies present in the argument]
+    
+    **Strength:**
+    [Evaluate the overall strength of the argument]
+    
+    **Improvements:**
+    [Suggest specific ways to improve the argument]`;
     
     // Create the messages array
     const messages = [
@@ -48,27 +62,17 @@ export async function POST(req: Request) {
       console.log(`[${requestId}] Mistral API Key present: ${process.env.MISTRAL_API_KEY ? 'Yes' : 'No'}`);
       console.log(`[${requestId}] Mistral API Key length: ${process.env.MISTRAL_API_KEY?.length || 0}`);
       
-      // Get chat completion from Mistral
-      const response = await getChatCompletion(messages, {
+      // Get streaming chat completion from Mistral
+      const stream = await getChatCompletionStream(messages, {
         temperature: 0.7,
         maxTokens: 2000
       });
       
-      console.log(`[${requestId}] Successfully received Mistral response`);
+      console.log(`[${requestId}] Successfully initiated Mistral streaming response`);
       
-      // Extract the assistant's response
-      if (!response.choices || response.choices.length === 0) {
-        console.log(`[${requestId}] Error: No response choices returned from Mistral API`);
-        throw new Error('No response choices returned from Mistral API');
-      }
+      // Return the stream directly
+      return new Response(stream);
       
-      const assistantResponse = response.choices[0].message.content;
-      console.log(`[${requestId}] Response length: ${assistantResponse.length} characters`);
-      
-      return NextResponse.json({ 
-        response: assistantResponse,
-        requestId
-      });
     } catch (apiError: any) {
       console.error(`[${requestId}] Error during Mistral API call:`, apiError);
       console.error(`[${requestId}] Error details:`, JSON.stringify(apiError));

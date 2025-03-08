@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Brain, Shield, Zap, CheckCircle, FileText, BookOpen, Expand, Search, CheckSquare, Lightbulb, Settings, Info, Calendar } from "lucide-react"
@@ -38,17 +40,42 @@ export default function Home() {
           <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl mb-8 text-white">
             Master the Art of Logical Reasoning
           </h1>
-          <p className="max-w-2xl mx-auto text-xl mb-12 text-white font-light">
+          <p className="max-w-2xl mx-auto text-xl mb-8 text-white font-light">
             Elevate your argumentation skills with AI-powered analysis and training. Perfect for lawyers, students, and professionals who rely on clear logical thinking.
           </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <Link
-              href="/analyze"
-              className="px-8 py-4 text-lg font-medium text-port-900 bg-white border-2 border-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+          
+          {/* New Argument Input Box */}
+          <div className="w-full max-w-2xl mx-auto mb-10 bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20 shadow-xl">
+            <form 
+              className="flex flex-col space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const argument = formData.get('argument')?.toString() || '';
+                window.location.href = `/analyze?argument=${encodeURIComponent(argument)}`;
+              }}
             >
-              Try Argument Analysis
-            </Link>
+              <label htmlFor="argument" className="text-left text-white text-lg font-medium">
+                Enter your argument:
+              </label>
+              <textarea
+                id="argument"
+                name="argument"
+                rows={4}
+                className="w-full p-3 rounded-md border border-white/30 bg-white/20 text-white placeholder-white/70 focus:ring-2 focus:ring-port-300 focus:border-transparent"
+                placeholder="The government should not regulate artificial intelligence, because technological progress has always been driven by free-market competition, not government intervention."
+                required
+              ></textarea>
+              <button
+                type="submit"
+                className="w-full py-3 px-6 bg-white text-port-900 font-medium rounded-md hover:bg-gray-100 transition-colors flex items-center justify-center"
+              >
+                Analyze Argument <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+            </form>
           </div>
+          
           <div className="mt-12 bg-gradient-to-r from-port-800/90 via-port-700/90 to-port-800/90 px-8 py-5 rounded-lg inline-block shadow-lg border border-port-600/30">
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <div className="flex items-center">
